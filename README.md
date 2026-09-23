@@ -44,7 +44,7 @@ documented model calls; application logs do not contain resume contents or API k
 ## Quick start
 
 Requirements: Python 3.11+, [uv](https://docs.astral.sh/uv/getting-started/installation/), Node.js
-20+, and TypeSafe and Anthropic API keys.
+22+, and TypeSafe and Anthropic API keys.
 
 ```bash
 git clone https://github.com/Dipeshtripathi13/jevmatch.git

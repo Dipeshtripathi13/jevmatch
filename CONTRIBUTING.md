@@ -5,7 +5,7 @@ Thanks for helping make resume matching more transparent and responsible.
 ## Development
 
 1. Fork the repository and create a focused branch.
-2. Install [uv](https://docs.astral.sh/uv/) and Node.js 20 or newer.
+2. Install [uv](https://docs.astral.sh/uv/) and Node.js 22 or newer.
 3. Run `make install`, then `make test` and `make lint` before opening a pull request.
 4. Add tests for behavioral changes. Never add real resumes, API keys, or personally identifying
    candidate data to fixtures, logs, issues, or commits.
