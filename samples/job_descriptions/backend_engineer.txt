@@ -1,0 +1,21 @@
+Senior Backend Engineer — Remote (United States)
+
+We are looking for a Senior Backend Engineer to design and operate APIs used by millions of
+customers. You will lead service design, improve reliability, and mentor engineers across the
+team. This is a remote role for candidates located in the United States.
+
+Required qualifications
+- 5+ years of professional software engineering experience.
+- Strong production experience with Python.
+- Hands-on experience designing REST APIs with FastAPI or a comparable Python framework.
+- Production PostgreSQL experience, including schema design and query optimization.
+- Experience deploying containerized services with Docker and Kubernetes.
+
+Preferred qualifications
+- Experience on AWS and with infrastructure as code.
+- Kafka or another event-streaming platform.
+- A bachelor's degree in computer science or equivalent practical experience.
+
+You will collaborate with product and security partners, participate in an on-call rotation, and
+help the team improve its engineering standards. We value clear communication, pragmatic design,
+and candidates who can explain tradeoffs rather than simply list technologies.

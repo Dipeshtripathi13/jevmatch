@@ -1,0 +1,23 @@
+Jordan Rivera
+jordan.rivera@example.com | (415) 555-0142 | github.com/jrivera
+
+SUMMARY
+Backend engineer focused on reliable Python platforms, service design, and technical mentorship.
+
+EXPERIENCE
+Principal Backend Engineer, Northstar Labs — January 2022 to Present
+- Led the architecture of FastAPI services handling 18 million requests per day on AWS.
+- Designed PostgreSQL schemas and reduced high-volume query latency through indexing and profiling.
+- Set Kubernetes reliability standards, Docker build practices, and Terraform modules for six teams.
+- Mentored five engineers and led incident reviews for the platform group.
+
+Senior Software Engineer, Cedar Systems — June 2018 to December 2021
+- Built Python REST APIs and Kafka consumers for an enterprise workflow product.
+- Owned production deployments, observability, and a weekly on-call rotation.
+- Collaborated with product and security teams on service design and delivery.
+
+EDUCATION
+Bachelor of Science in Computer Science, State University
+
+SKILLS
+Python, FastAPI, PostgreSQL, Docker, Kubernetes, AWS, Terraform, Kafka

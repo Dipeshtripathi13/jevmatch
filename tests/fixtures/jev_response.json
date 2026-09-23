@@ -1,0 +1,27 @@
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "is_resume": {"type": "noul", "noul": 0.99},
+    "seniority": {
+      "type": "choice",
+      "choice": "senior",
+      "confidence": 0.88,
+      "probabilities": {"junior": 0.01, "mid": 0.1, "senior": 0.8, "lead": 0.08, "insufficient_signal": 0.01}
+    },
+    "r1": {"type": "noul", "noul": 0.94},
+    "r2": {
+      "type": "score",
+      "score": 3,
+      "confidence": 0.86,
+      "legend": {
+        "0": "Not mentioned anywhere",
+        "1": "Listed as a skill only, with no project or role using it",
+        "2": "Used in at least one described project or role",
+        "3": "A primary tool in a role for a year or more",
+        "4": "Led design or architecture with it, or mentored others in it"
+      },
+      "probabilities": {"0": 0, "1": 0.02, "2": 0.12, "3": 0.76, "4": 0.1}
+    }
+  },
+  "usage": {"input_tokens": 520, "output_tokens": 90}
+}

@@ -1,0 +1,21 @@
+Morgan Lee
+morgan.lee@example.com | 212-555-0181
+
+SUMMARY
+Software engineer with experience building internal tools and customer-facing web applications.
+
+EXPERIENCE
+Software Engineer, Acme Products — March 2023 to Present
+- Built Django APIs in Python and supported a PostgreSQL-backed internal application.
+- Added Docker development environments and maintained CI pipelines.
+- Worked with senior engineers to investigate production alerts.
+
+Junior Developer, Bright Studio — July 2021 to February 2023
+- Developed React interfaces and small Node.js API endpoints.
+- Wrote SQL reports for operations teams.
+
+EDUCATION
+Associate of Science in Information Technology
+
+SKILLS
+Python, Django, PostgreSQL, Docker, React, SQL

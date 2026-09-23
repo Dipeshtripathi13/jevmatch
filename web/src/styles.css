@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  body {
+    @apply m-0 antialiased;
+  }
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+  button:disabled {
+    @apply cursor-not-allowed opacity-45;
+  }
+  table th {
+    @apply border-b border-black/10 px-4 py-3 text-xs font-bold uppercase tracking-wider text-stone-400 dark:border-white/10;
+  }
+  table td {
+    @apply border-b border-black/5 px-4 py-4 text-sm dark:border-white/5;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-black/10 bg-white/80 p-5 shadow-lift backdrop-blur sm:p-6 dark:border-white/10 dark:bg-white/[0.04];
+  }
+  .eyebrow {
+    @apply text-xs font-extrabold uppercase tracking-[0.22em] text-teal dark:text-acid;
+  }
+  .button-primary {
+    @apply rounded-xl bg-teal px-4 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#066d64];
+  }
+  .button-secondary {
+    @apply rounded-xl border border-black/15 bg-transparent px-4 py-2 text-sm font-bold transition hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/10;
+  }
+  .button-acid {
+    @apply rounded-lg bg-acid px-5 py-3 text-sm font-black text-ink transition hover:-translate-y-0.5 hover:brightness-105;
+  }
+  .section-heading {
+    @apply mb-5 flex items-center justify-between gap-4;
+  }
+  .section-heading > div {
+    @apply flex items-center gap-3;
+  }
+  .section-heading h2 {
+    @apply font-display text-xl font-black;
+  }
+  .section-number {
+    @apply font-mono text-xs font-bold text-teal dark:text-acid;
+  }
+  .count {
+    @apply rounded-full bg-stone-100 px-3 py-1 text-xs font-bold dark:bg-white/10;
+  }
+  .tabs {
+    @apply mb-5 grid grid-cols-2 rounded-xl bg-stone-100 p-1 dark:bg-black/20;
+  }
+  .tabs button {
+    @apply rounded-lg px-3 py-2 text-sm font-semibold text-stone-500;
+  }
+  .tabs button.active {
+    @apply bg-white text-ink shadow-sm dark:bg-white/10 dark:text-white;
+  }
+  .dropzone {
+    @apply flex min-h-44 cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-black/15 bg-stone-50 text-center transition hover:border-teal hover:bg-emerald-50/40 dark:border-white/15 dark:bg-black/10 dark:hover:border-acid;
+  }
+  .dropzone small,
+  .resume-row small {
+    @apply block text-xs text-stone-400;
+  }
+  .resume-row {
+    @apply flex items-center gap-3 rounded-xl border border-black/10 p-3 text-sm dark:border-white/10;
+  }
+  .resume-row button {
+    @apply text-xs font-bold text-stone-400 hover:text-rose-500;
+  }
+  .label {
+    @apply mb-2 block text-xs font-bold uppercase tracking-wider text-stone-500;
+  }
+  .input {
+    @apply w-full rounded-lg border border-black/15 bg-white px-3 py-2.5 text-sm text-ink outline-none transition focus:border-teal focus:ring-2 focus:ring-teal/15 dark:border-white/15 dark:bg-black/20 dark:text-white;
+  }
+  .requirements-grid {
+    @apply grid items-center gap-3 md:grid-cols-[minmax(260px,1fr)_170px_140px_32px];
+  }
+  .remove {
+    @apply h-8 w-8 rounded-full text-xl text-stone-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950;
+  }
+  .empty {
+    @apply py-5 text-sm text-stone-400;
+  }
+  .step {
+    @apply flex items-center gap-2 rounded-full border border-black/10 px-3 py-2 text-xs font-bold text-stone-400 dark:border-white/10;
+  }
+  .step span {
+    @apply grid h-5 w-5 place-items-center rounded-full bg-stone-200 text-[10px] text-stone-500 dark:bg-white/10;
+  }
+  .step-complete {
+    @apply border-teal/30 text-teal dark:border-acid/30 dark:text-acid;
+  }
+  .step-complete span {
+    @apply bg-teal text-white dark:bg-acid dark:text-ink;
+  }
+  .spinner {
+    @apply h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white dark:border-black/20 dark:border-t-black;
+  }
+  .score-ring {
+    @apply mx-auto grid h-44 w-44 place-items-center rounded-full;
+    background: conic-gradient(#087e73 var(--score), #e7e5e4 0);
+  }
+  .score-ring > div {
+    @apply grid h-36 w-36 place-items-center content-center rounded-full bg-white dark:bg-[#131b1c];
+  }
+  .score-ring strong {
+    @apply block font-display text-5xl font-black;
+  }
+  .score-ring span {
+    @apply text-xs text-stone-400;
+  }
+  .badge {
+    @apply inline-block rounded-full bg-acid px-3 py-1 text-xs font-black uppercase tracking-wider text-ink;
+  }
+  dl dt {
+    @apply uppercase tracking-wider text-stone-400;
+  }
+  dl dd {
+    @apply mt-1 font-bold;
+  }
+  .bar {
+    @apply mb-1 h-2 w-28 overflow-hidden rounded-full bg-stone-200 dark:bg-white/10;
+  }
+  .bar span {
+    @apply block h-full rounded-full;
+  }
+}
+
+@media (max-width: 767px) {
+  .requirements-grid {
+    @apply grid-cols-1;
+  }
+  .requirements-grid:first-of-type {
+    @apply hidden;
+  }
+}

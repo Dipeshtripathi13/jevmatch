@@ -1,0 +1,18 @@
+Data Platform Engineer — New York, NY (Hybrid)
+
+Join our data platform group to build dependable batch and streaming systems for analytics and
+machine-learning teams. The position is hybrid in New York City with three office days per week.
+
+What you will do
+- Develop Python services and Apache Spark data pipelines.
+- Model analytics data in Snowflake and dbt.
+- Operate Airflow workflows with monitoring, testing, and clear ownership.
+- Partner with data scientists and application teams on data contracts.
+
+What you bring
+- At least 3 years of data engineering or backend engineering experience.
+- Demonstrated SQL and Python experience in production.
+- Experience with one major cloud platform.
+- Strong written communication and incident-response habits.
+
+Nice to have: Kafka, Terraform, Great Expectations, and experience mentoring other engineers.

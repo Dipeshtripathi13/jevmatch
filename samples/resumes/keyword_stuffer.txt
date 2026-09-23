@@ -1,0 +1,17 @@
+Taylor Candidate
+taylor@example.com | 646-555-0117
+
+OBJECTIVE
+Seeking an engineering opportunity.
+
+EXPERIENCE
+Office Assistant, Example Services — January 2023 to Present
+- Scheduled meetings, prepared reports, and coordinated office purchases.
+- Updated spreadsheets and responded to customer email.
+
+KEYWORDS
+Python Python Python. FastAPI. PostgreSQL. Docker. Kubernetes. AWS. Terraform. Kafka.
+Microservices, architecture, leadership, mentoring, APIs, cloud, DevOps, scalability.
+
+EDUCATION
+High school diploma
