@@ -77,19 +77,33 @@ def _render_results(results: list[MatchResult], verbose: bool = False) -> None:
     table.add_column("Verdict")
     table.add_column("Review")
     for index, result in enumerate(results, 1):
-        color = (
-            "green" if result.match_score >= 80 else "yellow" if result.match_score >= 55 else "red"
-        )
+        if result.status == "rejected":
+            rank = "—"
+            score = "[red]not scored[/]"
+            verdict = "rejected before scoring"
+        else:
+            match_score = result.match_score or 0
+            color = "green" if match_score >= 80 else "yellow" if match_score >= 55 else "red"
+            rank = str(index)
+            score = f"[{color}]{match_score:.1f}[/]"
+            verdict = result.verdict.replace("_", " ")
         table.add_row(
-            str(index),
+            rank,
             result.resume_name,
-            f"[{color}]{result.match_score:.1f}[/]",
-            result.verdict.replace("_", " "),
+            score,
+            verdict,
             "yes" if result.requires_human_review else "no",
         )
     console.print(table)
     if len(results) == 1:
         result = results[0]
+        if result.status == "rejected":
+            console.print(
+                "[bold red]Scoring was not performed:[/] " + "; ".join(result.rejection_reasons)
+            )
+            if result.security_flags:
+                console.print("Security flags: " + ", ".join(result.security_flags), style="dim")
+            return
         details = Table(title="Requirement evidence")
         details.add_column("Requirement")
         details.add_column("Result", justify="right")
@@ -111,18 +125,29 @@ def _write_csv(path: Path, results: list[MatchResult]) -> None:
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(
             handle,
-            fieldnames=["rank", "resume", "score", "verdict", "human_review", "missing_must_haves"],
+            fieldnames=[
+                "rank",
+                "resume",
+                "status",
+                "score",
+                "verdict",
+                "human_review",
+                "missing_must_haves",
+                "rejection_reasons",
+            ],
         )
         writer.writeheader()
         for rank, result in enumerate(results, 1):
             writer.writerow(
                 {
-                    "rank": rank,
+                    "rank": rank if result.status == "scored" else "",
                     "resume": result.resume_name,
-                    "score": result.match_score,
+                    "status": result.status,
+                    "score": result.match_score if result.status == "scored" else "",
                     "verdict": result.verdict,
                     "human_review": result.requires_human_review,
                     "missing_must_haves": "; ".join(result.missing_must_haves),
+                    "rejection_reasons": "; ".join(result.rejection_reasons),
                 }
             )
 

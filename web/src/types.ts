@@ -44,7 +44,10 @@ export interface RequirementResult {
 export interface MatchResult {
   resume_id: string | null;
   resume_name: string;
-  match_score: number;
+  status: "scored" | "rejected";
+  rejection_reasons: string[];
+  security_flags: string[];
+  match_score: number | null;
   verdict:
     "strong_match" | "partial_match" | "weak_match" | "needs_human_review";
   requires_human_review: boolean;
@@ -58,7 +61,8 @@ export interface MatchResult {
     passed: boolean | null;
   }>;
   seniority: string | null;
-  is_resume_probability: number;
+  is_resume_probability: number | null;
+  prompt_injection_probability: number | null;
   model_version: string;
   latency_ms: number;
 }

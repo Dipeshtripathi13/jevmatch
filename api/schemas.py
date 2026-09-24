@@ -15,7 +15,7 @@ class ResumeResponse(BaseModel):
 
 class InlineResume(BaseModel):
     name: str = Field(min_length=1, max_length=255)
-    text: str = Field(min_length=1)
+    text: str = Field(min_length=1, max_length=200_000)
 
 
 class RenameResumeRequest(BaseModel):
@@ -23,7 +23,7 @@ class RenameResumeRequest(BaseModel):
 
 
 class JDFetchRequest(BaseModel):
-    url: str
+    url: str = Field(min_length=1, max_length=2_048)
 
 
 class JDTextResponse(BaseModel):
@@ -31,13 +31,13 @@ class JDTextResponse(BaseModel):
 
 
 class RequirementRequest(BaseModel):
-    jd_text: str = Field(min_length=1)
+    jd_text: str = Field(min_length=1, max_length=2_000_000)
 
 
 class MatchRequest(BaseModel):
-    resume_ids: list[str] = Field(default_factory=list)
-    resumes: list[InlineResume] = Field(default_factory=list)
-    jd_text: str | None = None
+    resume_ids: list[str] = Field(default_factory=list, max_length=100)
+    resumes: list[InlineResume] = Field(default_factory=list, max_length=100)
+    jd_text: str | None = Field(default=None, max_length=2_000_000)
     requirements: list[Requirement] | None = None
     hard_constraints: HardConstraints = Field(default_factory=HardConstraints)
     include_evidence: bool = True

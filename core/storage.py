@@ -54,10 +54,13 @@ def add_saved_resume(
     record_id = str(uuid.uuid4())
     suffix = Path(filename).suffix.lower()
     destination = settings.resumes_dir / f"{record_id}{suffix}"
+    display_name = (name or Path(filename).stem).strip()
+    if not display_name or len(display_name) > 255:
+        raise ValueError("Resume display name must contain 1 to 255 characters.")
     destination.write_bytes(content)
     record = SavedResume(
         id=record_id,
-        name=(name or Path(filename).stem).strip(),
+        name=display_name,
         filename=Path(filename).name,
         stored_path=str(destination.resolve()),
         size_bytes=document.size_bytes,

@@ -5,8 +5,24 @@ export async function api<T>(path: string, options?: RequestInit): Promise<T> {
   if (!response.ok) {
     let message = `Request failed (${response.status})`;
     try {
-      const body = (await response.json()) as { detail?: string };
-      if (body.detail) message = body.detail;
+      const body = (await response.json()) as { detail?: unknown };
+      if (typeof body.detail === "string") {
+        message = body.detail;
+      } else if (Array.isArray(body.detail)) {
+        const details = body.detail
+          .map((item) => {
+            if (!item || typeof item !== "object") return null;
+            const error = item as { loc?: unknown[]; msg?: string };
+            const location = Array.isArray(error.loc)
+              ? error.loc.filter((part) => part !== "body").join(".")
+              : "";
+            return error.msg
+              ? `${location ? `${location}: ` : ""}${error.msg}`
+              : null;
+          })
+          .filter(Boolean);
+        if (details.length) message = details.join("; ");
+      }
     } catch {
       // Preserve the status fallback for non-JSON errors.
     }

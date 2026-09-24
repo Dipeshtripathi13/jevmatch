@@ -2,7 +2,7 @@ from datetime import UTC, datetime
 from enum import StrEnum
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class RequirementKind(StrEnum):
@@ -12,6 +12,8 @@ class RequirementKind(StrEnum):
 
 
 class Requirement(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     id: str = Field(pattern=r"^[A-Za-z0-9_-]+$")
     text: str = Field(min_length=2, max_length=500)
     kind: RequirementKind
@@ -19,6 +21,8 @@ class Requirement(BaseModel):
 
 
 class HardConstraints(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     min_years_experience: float | None = Field(default=None, ge=0, le=80)
     required_degree: Literal["associate", "bachelor", "master", "doctorate"] | None = None
     location: str | None = Field(default=None, max_length=200)
@@ -26,7 +30,9 @@ class HardConstraints(BaseModel):
 
 
 class ExtractedRequirements(BaseModel):
-    requirements: list[Requirement]
+    model_config = ConfigDict(extra="forbid")
+
+    requirements: list[Requirement] = Field(min_length=1, max_length=200)
     hard_constraints: HardConstraints = Field(default_factory=HardConstraints)
 
     @field_validator("requirements")
@@ -44,6 +50,7 @@ class ResumeDocument(BaseModel):
     redacted_text: str
     size_bytes: int
     source_path: str | None = None
+    security_flags: list[str] = Field(default_factory=list)
 
 
 class ResumeFacts(BaseModel):
@@ -91,15 +98,19 @@ class HardConstraintCheck(BaseModel):
 class MatchResult(BaseModel):
     resume_id: str | None = None
     resume_name: str
-    match_score: float = Field(ge=0, le=100)
+    status: Literal["scored", "rejected"] = "scored"
+    rejection_reasons: list[str] = Field(default_factory=list)
+    security_flags: list[str] = Field(default_factory=list)
+    match_score: float | None = Field(default=None, ge=0, le=100)
     verdict: Literal["strong_match", "partial_match", "weak_match", "needs_human_review"]
     requires_human_review: bool
     missing_must_haves: list[str] = Field(default_factory=list)
     gaps: list[Gap] = Field(default_factory=list)
-    requirement_results: list[RequirementResult]
+    requirement_results: list[RequirementResult] = Field(default_factory=list)
     hard_constraint_checks: list[HardConstraintCheck] = Field(default_factory=list)
     seniority: str | None = None
-    is_resume_probability: float
+    is_resume_probability: float | None = None
+    prompt_injection_probability: float | None = None
     raw_jev_answers: dict[str, Any] = Field(default_factory=dict)
     token_usage: dict[str, int | float] = Field(default_factory=dict)
     latency_ms: float = 0
