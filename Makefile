@@ -1,4 +1,4 @@
-.PHONY: install dev api web test lint format clean
+.PHONY: install dev api web mcp mcp-inspector test lint format clean
 
 install:
 	uv sync --extra dev
@@ -15,6 +15,12 @@ api:
 
 web:
 	cd web && npm run dev
+
+mcp:
+	uv run jevmatch-mcp
+
+mcp-inspector:
+	uv run mcp dev jevmatch_mcp/server.py
 
 test:
 	uv run pytest
